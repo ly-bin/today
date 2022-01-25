@@ -7,7 +7,7 @@
 
 ##### 3、代码
 ```
-// 此类做法是随机平均
+// 此类做法是随机均匀
 public int rand10() {
         int first, second;
         // [1,6]
@@ -17,7 +17,7 @@ public int rand10() {
         // 此处为这类解法的关键，此处用奇偶来产生1/2的随机性，以减少对rand7的调用次数
         return (first&1) == 1 ? second : 5+second;
     }
-// 此类做法是顺序平均，java提交排名第一的写法，是个大神
+// 此类做法是感觉有规律，严格来说不是随机均匀，有规律的均匀2,3...10,1这样的序列一直循环，java提交排名第一的写法，是个大神
 class Solution extends SolBase {
     int count = 1;
     public int rand10() {
