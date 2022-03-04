@@ -1,0 +1,49 @@
+##### 1、题目：https://leetcode-cn.com/problems/partition-list-lcci/。   中等 
+##### 2、思路：
+> 1、遍历链表，将链表的当前节点剥离出来，小于x的，全部链接到一个链表lowHead，其余的链接到一个链表higNode；
+>
+> 2、最后如果小于x的链表lowHead不为空，则直接将大于等于x的链表higNode链在链表lowHead的后面即可。
+##### 3、代码
+```
+public class Partition {
+
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+
+
+    public ListNode partition(ListNode head, int x) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode lowHead = new ListNode(-1);
+        ListNode ito1Node = lowHead;
+        ListNode higNode = new ListNode(-1);
+        ListNode ito2Node = higNode;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = null;
+
+            if (head.val < x) {
+                ito1Node.next = head;
+                ito1Node = ito1Node.next;
+            } else {
+                ito2Node.next = head;
+                ito2Node = ito2Node.next;
+            }
+            head = temp;
+        }
+        if (ito1Node != null){
+            ito1Node.next = higNode.next;
+        }
+        return lowHead.next;
+
+    }
+}
+
+```
